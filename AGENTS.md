@@ -4,7 +4,9 @@
 
 A **training exercise** for building an agentic AI system that reads source artifacts and produces documentation. The full specification is in `usecase.md`.
 
-**Status:** Prompt 6 Complete — Review Routing Agent + Red Team Testing implemented. FastAPI AI Scaffolding audit completed. **7 attack scenarios tested.** Ready for Prompt 7 (Guardrails).
+**Status:** Prompt 6 Complete — Review Routing Agent + Red Team Testing implemented. FastAPI AI Scaffolding audit completed. **7 attack scenarios tested.** Code pushed to GitHub. Ready for Prompt 7 (Guardrails).
+
+**Repository:** https://github.com/vrlnarayana/case-study-1-documentation-automation.git
 
 ### Latest Update: Red Team Testing (2026-10-08)
 
@@ -383,6 +385,114 @@ python3.11 -m streamlit run app/streamlit_app.py --server.port=8501 --server.hea
 
 ---
 
+## Git Repository Information
+
+**Repository:** https://github.com/vrlnarayana/case-study-1-documentation-automation.git
+
+### Clone the Repository
+
+```bash
+# Clone the repository
+git clone https://github.com/vrlnarayana/case-study-1-documentation-automation.git
+
+# Navigate to project
+cd case-study-1-documentation-automation
+
+# Setup environment
+cp .env.example .env
+# Edit .env with your API keys
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Repository Structure
+
+```
+case-study-1-documentation-automation/
+├── app/                      # Main application code
+│   ├── agents/               # LangGraph agents
+│   ├── mcp_server/           # MCP server implementation
+│   ├── utils/                # Utility modules
+│   └── streamlit_app.py      # Streamlit UI
+├── seed_data/                # Test fixtures & attack payloads
+├── seed_data_attack/         # Red team attack scenarios
+├── tests/                    # Test suite (84 tests)
+├── outputs/                  # Generated documents
+├── AGENTS.md                 # This file
+├── README.md                 # Project documentation
+└── usecase.md                # Full specification
+```
+
+### Git Workflow
+
+```bash
+# Check status
+git status
+
+# Create feature branch for Prompt 7
+git checkout -b feature/prompt-7-guardrails
+
+# Make changes and commit
+git add .
+git commit -m "Implement Prompt 7: Guardrails
+
+- Add PII/secret scanning (L3)
+- Add content-based classification (L1)
+- Add proprietary content filter (L3)
+- Update red team tests
+
+Tests: 84 passing"
+
+# Push branch
+git push -u origin feature/prompt-7-guardrails
+
+# Create Pull Request via GitHub CLI
+gh pr create --title "Prompt 7: Guardrails" --body "Implements defense layers..."
+```
+
+### Current Commit
+
+**Latest commit:** `d70b7c2` - Initial commit: Documentation Automation System - Case Study 1  
+**Branch:** `main`  
+**Total commits:** 1  
+**Files tracked:** 53
+
+### .gitignore
+
+The following are excluded from version control:
+- `.env` - Environment variables (API keys)
+- `*.log` - Log files
+- `outputs/*.md` - Generated documents
+- `__pycache__/` - Python cache
+- `.DS_Store` - macOS files
+
+---
+
+## CI/CD (Future)
+
+Planned GitHub Actions workflows:
+
+```yaml
+# .github/workflows/ci.yml
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - run: pytest tests/ -v
+```
+
+Status: ⏳ Pending implementation
+
+---
+
 ## Files That Matter
 
 | File | Purpose |
@@ -395,7 +505,7 @@ python3.11 -m streamlit run app/streamlit_app.py --server.port=8501 --server.hea
 | `app/mcp_server/server.py` | MCP server with security controls |
 | `app/utils/llm_client.py` | LLM client (needs async + retry refactor) |
 | `seed_data/` | Test fixtures with intentional issues |
-| `tests/` | 77 passing tests |
+| `tests/` | 84 passing tests |
 
 ---
 
